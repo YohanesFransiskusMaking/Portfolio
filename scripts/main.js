@@ -18,3 +18,31 @@ window.onbeforeunload = () => {
         form.reset();
     }
 };
+
+// Slideshow dengan dot navigation
+document.querySelectorAll(".slideshow").forEach(slideshow => {
+  const slides = slideshow.querySelectorAll(".slide");
+  const dots = slideshow.querySelectorAll(".dot");
+  let index = 0;
+
+  function showSlide(newIndex) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    slides[newIndex].classList.add("active");
+    dots[newIndex].classList.add("active");
+    index = newIndex;
+  }
+
+  // aktifkan default slide pertama
+  showSlide(0);
+
+  // Event listener tiap dot
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener("click", () => {
+      showSlide(dotIndex);
+    });
+  });
+});
+
+
