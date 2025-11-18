@@ -645,8 +645,13 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
   .pf-media {
-    height: 150px;
+    height: 140px;
+    aspect-ratio: 16 / 9;
   }
+  .pf-slide:first-child {
+  opacity: 1;
+}
+
 }
 
 @media (max-width: 640px) {
@@ -655,10 +660,15 @@ footer {
     gap: 1rem;
   }
   .pf-media {
-    height: 140px;
+    height: 120px;
+    aspect-ratio: 16 / 9;
   }
   .pf-card {
     min-height: 360px;
     border-radius: 12px;
   }
+  .pf-slide:first-child {
+  opacity: 1;
+}
+
 }
