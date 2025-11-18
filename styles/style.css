@@ -649,9 +649,8 @@ footer {
     aspect-ratio: 16 / 9;
   }
   .pf-slide:first-child {
-  opacity: 1;
-}
-
+    opacity: 1 !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -668,7 +667,9 @@ footer {
     border-radius: 12px;
   }
   .pf-slide:first-child {
-  opacity: 1;
+    opacity: 1 !important;
+  }
 }
 
-}
+
+

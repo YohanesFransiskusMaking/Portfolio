@@ -20,29 +20,40 @@ window.onbeforeunload = () => {
 };
 
 // Slideshow dengan dot navigation
-document.querySelectorAll(".slideshow").forEach(slideshow => {
-  const slides = slideshow.querySelectorAll(".slide");
-  const dots = slideshow.querySelectorAll(".dot");
+// Slideshow untuk Card A
+document.querySelectorAll("[data-slideshow]").forEach(slideshow => {
+  const slides = slideshow.querySelectorAll(".pf-slide");
+  const dotsContainer = slideshow.parentElement.querySelector(".pf-dots");
+
+  // Generate dots
+  dotsContainer.innerHTML = "";
+  slides.forEach(() => {
+    const dot = document.createElement("button");
+    dot.setAttribute("aria-pressed", "false");
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll("button");
   let index = 0;
 
-  function showSlide(newIndex) {
-    slides.forEach(slide => slide.classList.remove("active"));
-    dots.forEach(dot => dot.classList.remove("active"));
+  function showSlide(i) {
+    slides.forEach(slide => slide.removeAttribute("data-active"));
+    dots.forEach(dot => dot.setAttribute("aria-pressed", "false"));
 
-    slides[newIndex].classList.add("active");
-    dots[newIndex].classList.add("active");
-    index = newIndex;
+    slides[i].setAttribute("data-active", "true");
+    dots[i].setAttribute("aria-pressed", "true");
+
+    index = i;
   }
 
-  // aktifkan default slide pertama
+  // default: slide pertama
   showSlide(0);
 
-  // Event listener tiap dot
+  // klik dot
   dots.forEach((dot, dotIndex) => {
-    dot.addEventListener("click", () => {
-      showSlide(dotIndex);
-    });
+    dot.addEventListener("click", () => showSlide(dotIndex));
   });
 });
+
 
 
